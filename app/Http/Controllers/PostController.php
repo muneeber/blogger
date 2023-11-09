@@ -21,7 +21,12 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        // return view('article.create');
+    }
+
+    public function crt()
+    {
+        return view('article.create');
     }
 
     /**

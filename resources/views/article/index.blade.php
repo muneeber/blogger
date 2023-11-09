@@ -3,7 +3,7 @@
 @section('content')
     <div class="w-full mx-auto mt-5 mb-10">
        <span class="block inline text-md text-white transition-all hover:text-gray-100 font-bold uppercase">
-           <a href="{{ route('article.create') }}" class="bg-red-700 rounded-md py-3 px-5">
+           <a href="{{ route('crt') }}" class="bg-red-700 rounded-md py-3 px-5">
                 Create Article
            </a>
       </span>
