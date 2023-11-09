@@ -39,6 +39,10 @@ class PostController extends Controller
     public function store(Request $request)
     {
         // dd($request);
+        $request->validate([
+            'title'=>'required',
+            'excerpt'=>'required'
+        ]);
         $user_id=Auth::user()->id;
         $status=0;
         if ( $request->status == "on") {
