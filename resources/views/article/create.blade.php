@@ -8,7 +8,7 @@
             <div class="w-full mx-auto mb-10">
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                     <form method="post"
-                          action=""
+                          action="{{ route('article.store') }}"
                           class="px-8  mt-6 space-y-6">
                         @csrf
 
@@ -39,7 +39,7 @@
 
                         <div>
                             <x-input-label name="description" for="description" :value="__('Description')" />
-                            <textarea class="mt-1 block w-full h-40 border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm"> </textarea>
+                            <textarea name="description" class="mt-1 block w-full h-40 border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm"> </textarea>
                             @error('description')
                                 <div class="text-red-500">{{ $message }}</div>
                             @enderror
@@ -51,9 +51,12 @@
                                 <option value="" disabled selected>
                                     Select your category
                                 </option>
-                                <option value="x">
-                                    x
+                                @foreach ($categories as $category)
+                                    
+                                <option value="{{ $category }}">
+                                    {{ $category }}
                                 </option>
+                                @endforeach
                             </select>
                             @error('category_id')
                                 <div class="text-red-500">{{ $message }}</div>
@@ -61,11 +64,11 @@
                         </div>
 
                         <div>
-                            <x-input-label for="tags" :value="__('Tags')" />
+                            {{-- <x-input-label for="tags" :value="__('Tags')" />
                             <select multiple name="tags" id="countries_multiple" class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm">
                                 <option value="x">x</option>
                             </select>
-                        </div>
+                        </div> --}}
 
                         <div class="flex items-center gap-4 pb-10">
                             <x-primary-button>{{ __('Save') }}</x-primary-button>

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\post;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -26,7 +28,9 @@ class PostController extends Controller
 
     public function crt()
     {
-        return view('article.create');
+        $categories = Post::distinct()->pluck('category_id');
+        // dd($categories);
+        return view('article.create',compact('categories'));
     }
 
     /**
@@ -34,7 +38,24 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request);
+        $user_id=Auth::user()->id;
+        $status=0;
+        if ( $request->status == "on") {
+            $status=1;
+            # code...
+        }
+        $title=$request->title;
+        $slug=Str::slug($title);
+        Post::create([
+            'title'=>$request->title,
+            'excerpt'=>$request->title,
+            'slug'=>$slug,
+            'description'=>$request->description,
+            'status'=>$status,
+            'category_id'=>$request->category,
+            'user_id'=>$user_id
+        ]);
     }
 
     /**
